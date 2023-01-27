@@ -1,15 +1,20 @@
 <template>
-    <div class="form">
-        <p>¿Què vols fer?</p>
-        <p v-for="servicio in servicios" :key="servicio">
-            <input type="checkbox" :id="servicio.title" v-model="servicio.checked">
-            {{ servicio.title }}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-7 col-lg-6 col-xl-5 bg-white mt-4 p-4 border border-5 border-dark-subtle rounded-5 text-start">
+                <p>¿Què vols fer?</p>
+                <p v-for="servicio in servicios" :key="servicio">
+                    <input type="checkbox" :id="servicio.title" v-model="servicio.checked">
+                    {{ servicio.title }}
 
-        <div v-if="servicio.pages != null && servicio.checked == true">
-            <Panell :servicio=servicio></Panell>
+                <div v-if="servicio.pages != null && servicio.checked == true">
+                    <Panell :servicio=servicio></Panell>
+                </div>
+                </p>
+                Preu: {{ newTotal }}€
+            </div>
         </div>
-        </p>
-        Preu: {{ newTotal }}€
+        <button class="btn btn-outline-warning m-1 border border-3 border-warning" @click="$router.go(-1)">Enrere</button>
     </div>
 </template>
 
@@ -76,9 +81,5 @@ export default {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-.form {
-    margin: 10px;
 }
 </style>
