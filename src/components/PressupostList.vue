@@ -13,6 +13,7 @@
         <hr>
 
         <div class="text-end">
+            <input type="text" placeholder="Cerca pressupost o client" class="btn btn-outline-warning" v-model="busqueda">
             <button type="button" class="btn btn-outline-warning m-1" v-on:click="ordenaAz">Ordenar A-Z</button>
             <button type="button" class="btn btn-outline-warning m-1" v-on:click="ordenaData">Ordenar per data</button>
             <button type="button" class="btn btn-outline-warning m-1"
@@ -87,8 +88,8 @@ export default {
                 this.busqueda.toLocaleLowerCase();
 
                 this.array = this.newArray.filter(elemento =>
-                    elemento.presupuesto.includes(this.busqueda) ||
-                    elemento.cliente.includes(this.busqueda)
+                    elemento.presupuesto.toLocaleLowerCase().includes(this.busqueda) ||
+                    elemento.cliente.toLocaleLowerCase().includes(this.busqueda)
                 );
                 
                 this.newArray = [].concat(this.array);
@@ -150,6 +151,8 @@ export default {
             });
         },
         ordenaReinicia: function () {
+            this.busqueda = ""
+            
             this.arrayOrdenado.sort((a, b) => {
                 if (a.id == b.id) {
                     return 0;
