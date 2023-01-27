@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-10 col-md-7 col-lg-6 col-xl-5 bg-white mt-4 p-4 border border-5 border-dark-subtle rounded-4 text-start">
+        <div class="row">
+            <div class="col-10 col-md-7 col-lg-6 col-xl-5 bg-white mt-4 p-4 text-start">
                 <p>¿Què vols fer?</p>
                 <p v-for="servicio in servicios" :key="servicio">
                     <input type="checkbox" :id="servicio.title" v-model="servicio.checked">
@@ -11,20 +11,26 @@
                     <Panell :servicio=servicio></Panell>
                 </div>
                 </p>
-                Preu: {{ newTotal }}€
-            </div>
-        </div>
-        <button class="btn btn-outline-warning m-1 border border-3 border-warning" @click="$router.go(-1)">Enrere</button>
+                <p id="alerta" class="text-danger">Has de seleccionar almenys un servei</p>
+                <p>Preu: {{ newTotal }}€</p>
+                <p></p>
+                <button class="btn btn-outline-warning mt-1 border border-3 border-warning" @click="$router.go(-1)">Enrere</button>
+            </div>  
+            <PressupostList :servicios="servicios" :newTotal="newTotal"></PressupostList>         
+        </div>        
+        
     </div>
 </template>
 
 <script>
 import Panell from './Panell.vue'
+import PressupostList from './PressupostList.vue';
 
 export default {
     name: 'Home',
     components: {
-        Panell
+        Panell,
+        PressupostList
     },
     data() {
         return {
