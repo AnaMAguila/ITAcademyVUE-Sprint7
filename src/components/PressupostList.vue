@@ -1,5 +1,6 @@
 <template>
-    <div class="col bg-white mt-4 p-4 text-start">
+    <div class="col bg-white mt-1 p-4 text-start">
+
         <p>Omple tots els camps si desitges guardar el teu pressupost</p>
         <form @submit.prevent="agregaPresupuesto">
             <span v-for="datos in datosFicha" :key="datos.etiqueta">
@@ -9,7 +10,14 @@
         </form>
 
         <h3 class="text-warning mt-4">Pressupostos</h3>
+        <hr>
 
+        <div class="text-end">
+            <button type="button" class="btn btn-outline-warning m-1" v-on:click="ordenaAz">Ordenar A-Z</button>
+            <button type="button" class="btn btn-outline-warning m-1" v-on:click="ordenaData">Ordenar per data</button>
+            <button type="button" class="btn btn-outline-warning m-1"
+                v-on:click="ordenaReinicia">Reinicialitzar</button>
+        </div>
         <table class="table table-striped mt-2">
             <thead>
                 <tr>
@@ -24,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="presupuestoItem in arrayPresupuestos" :key="presupuestoItem">
+                <tr v-for="presupuestoItem in arrayOrdenado" :key="presupuestoItem">
                     <th scope="row">{{ presupuestoItem.presupuesto }}</th>
                     <td>{{ presupuestoItem.cliente }}</td>
                     <td>
@@ -65,7 +73,28 @@ export default {
                 { etiqueta: "Pressupost" },
                 { etiqueta: "Client" }
             ],
-            arrayPresupuestos: []
+            arrayPresupuestos: [],
+            newArray: [],
+            busqueda: ""
+        }
+    },
+    computed: {
+        arrayOrdenado: function () {
+            //Clonación del array pasado por props
+            this.newArray = [].concat(this.arrayPresupuestos);
+
+            if (this.busqueda) {
+                this.busqueda.toLocaleLowerCase();
+
+                this.array = this.newArray.filter(elemento =>
+                    elemento.presupuesto.includes(this.busqueda) ||
+                    elemento.cliente.includes(this.busqueda)
+                );
+                
+                this.newArray = [].concat(this.array);
+            }
+
+            return this.newArray
         }
     },
     methods: {
@@ -97,9 +126,39 @@ export default {
             } else if (this.newTotal == 0) {
                 document.getElementById("alerta").style.display = "inline"
             }
-
-            console.log(this.arrayPresupuestos)
-
+        },
+        ordenaAz: function () {
+            this.arrayOrdenado.sort((a, b) => {
+                if (a.presupuesto == b.presupuesto) {
+                    return 0;
+                }
+                if (a.presupuesto < b.presupuesto) {
+                    return -1;
+                }
+                return 1;
+            });
+        },
+        ordenaData: function () {
+            this.arrayOrdenado.sort((a, b) => {
+                if (a.fecha == b.fecha) {
+                    return 0;
+                }
+                if (a.fecha < b.fecha) {
+                    return -1;
+                }
+                return 1;
+            });
+        },
+        ordenaReinicia: function () {
+            this.arrayOrdenado.sort((a, b) => {
+                if (a.id == b.id) {
+                    return 0;
+                }
+                if (a.id < b.id) {
+                    return -1;
+                }
+                return 1;
+            });
         }
     }
 }

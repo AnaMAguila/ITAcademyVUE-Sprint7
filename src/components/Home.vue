@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-10 col-md-7 col-lg-6 col-xl-5 bg-white mt-4 p-4 text-start">
+            <div class="col-10 col-md-7 col-lg-6 col-xl-5 bg-white mt-2 p-4 text-start">
                 <p>¿Què vols fer?</p>
                 <p v-for="servicio in servicios" :key="servicio">
                     <input type="checkbox" :id="servicio.title" v-model="servicio.checked">
