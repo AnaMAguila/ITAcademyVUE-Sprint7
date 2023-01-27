@@ -28,8 +28,8 @@ export default {
                     title: "Obtenir el pressupost d'una pàgina web (500 €)",
                     price: 500,
                     checked: false,
-                    pages: 0,
-                    lang: 0
+                    pages: 1,
+                    lang: 1
                 },
                 {
                     title: "Fer una campanya SEO (300 €)",
