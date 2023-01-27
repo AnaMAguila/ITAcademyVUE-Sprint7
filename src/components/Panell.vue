@@ -1,8 +1,8 @@
 <template>
-    <div class="opc-web">
+    <div class="col-11 col-lg-9 bg-white mt-3 p-1 pt-4 pb-4 border border-5 border-dark rounded-4 text-start">
         <table>
             <tr>
-                <td>Número de pàgines</td>
+                <td  class="p-2 m-2">Número de pàgines</td>
                 <td>
                     <div class="input-group input-number-group">
                         <div class="input-group-button">
@@ -14,11 +14,14 @@
                         <div class="input-group-button">
                             <span class="input-number-decrement" @click="removePages">-</span>
                         </div>
+                        <div>
+                            <button type="button" class="btn-info" data-bs-toggle="modal" data-bs-target="#infoPages"></button>
+                        </div>
                     </div>
                 </td>
             </tr>
             <tr>
-                <td>Número d'idiomes</td>
+                <td  class="p-2 m-2">Número d'idiomes</td>
                 <td>
                     <div class="input-group input-number-group">
                         <div class="input-group-button">
@@ -28,10 +31,35 @@
                         <div class="input-group-button">
                             <span class="input-number-decrement" @click="removeLang">-</span>
                         </div>
+                        <div>
+                            <button type="button" class="btn-info" data-bs-toggle="modal" data-bs-target="#infoLang"></button>
+                        </div>
                     </div>
                 </td>
             </tr>
         </table>
+
+        <!-- Modal pages -->
+        <div class="modal fade" id="infoPages" tabindex="-1" aria-labelledby="infoPagesLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        En aquest component ha d'indicar el nombre de pàgines que tindrà el seu lloc web
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal languages -->
+        <div class="modal fade" id="infoLang" tabindex="-1" aria-labelledby="infoLangLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        En aquest component ha d'indicar el nombre d'idiomes que tindrà el seu lloc web
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -74,17 +102,6 @@
 </script>
 
 <style>
-.opc-web {
-    margin-top: 20px;
-    width: fit-content;
-    border: 4px solid #000;
-    padding: 20px 10px 20px 10px;
-    border-radius: 20px;
-}
-
-td {
-    padding: 10px;
-}
 
 .input-number-group input[type=number]::-webkit-inner-spin-button,
 .input-number-group input[type=number]::-webkit-outer-spin-button {
@@ -111,6 +128,7 @@ td {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    text-align: center;
 }
 
 .input-number-group .input-number-decrement,
@@ -125,4 +143,48 @@ td {
     font-size: 2rem;
     margin: 0 3px 0 3px;
 }
+
+.btn-info {
+    background-image: url('../assets/img/info.svg');
+    background-color: #fff;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.btn-info:hover {
+    background-color: #fff;
+    border: none;
+    outline: none;
+}
+
+.btn-info:focus {
+    background-color: #fff;
+    border: none;
+    outline: none;
+}
+
+.modal-dialog {
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    right: 0%;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 20px;
+}
+
+.modal-body {
+    border-radius: 20px;
+    border: 4px solid #000;
+    padding: 30px;
+}
+
+
 </style>
