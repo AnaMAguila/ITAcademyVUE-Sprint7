@@ -41,11 +41,11 @@
                         <img v-if="!presupuestoItem.web" class="check-icon" src="@/assets/img/false.png" alt="">
                     </td>
                     <td>
-                        <p v-show="presupuestoItem.web === true">{{ presupuestoItem.pages }}</p>
+                        <p v-show="presupuestoItem.web === true || presupuestoItem.web === 'true'">{{ presupuestoItem.pages }}</p>
                         <img v-if="!presupuestoItem.web" class="check-icon" src="@/assets/img/false.png" alt="">
                     </td>
                     <td>
-                        <p v-show="presupuestoItem.web === true">{{ presupuestoItem.lang }}</p>
+                        <p v-show="presupuestoItem.web === true || presupuestoItem.web === 'true'">{{ presupuestoItem.lang }}</p>
                         <img v-if="!presupuestoItem.web" class="check-icon" src="@/assets/img/false.png" alt="">
                     </td>
                     <td>
@@ -94,7 +94,6 @@ export default {
                 
                 this.newArray = [].concat(this.array);
             }
-
             return this.newArray
         }
     },
@@ -104,11 +103,11 @@ export default {
                 id: this.arrayPresupuestos.length,
                 presupuesto: document.getElementById("Pressupost").value,
                 cliente: document.getElementById("Client").value,
-                web: this.servicios[0].checked,
+                web: JSON.parse(this.servicios[0].checked),
                 pages: this.servicios[0].pages,
                 lang: this.servicios[0].lang,
-                seo: this.servicios[1].checked,
-                publi: this.servicios[2].checked,
+                seo: JSON.parse(this.servicios[1].checked),
+                publi: JSON.parse(this.servicios[2].checked),
                 total: this.newTotal,
                 fecha: new Date()
             }
