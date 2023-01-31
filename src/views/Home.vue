@@ -80,6 +80,13 @@ export default {
             return total;
         },
         ruta() {
+            // const arrayRuta = [
+            //     "paginaWeb=" + this.servicios[0].checked,
+            //     "&campaniaSeo=" + this.servicios[1].checked, 
+            //     "&campaniaAds=" + this.servicios[2].checked,
+            //     "&nPaginas=" + this.servicios[0].pages, 
+            //     "&nIdiomas=" + this.servicios[0].lang
+            // ]
 
             const arrayRuta = [
                 this.servicios[0].checked,
